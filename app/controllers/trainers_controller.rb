@@ -4,4 +4,11 @@ class TrainersController < ApplicationController
         trainers = Trainer.all
         render json: trainers
     end
+
+    def show 
+        trainer = Trainer.find(params[:id])
+        render json: trainer
+    rescue ActiveRecord::RecordNotFound
+        render json: "Trainer not found", status: :not_found
+    end 
 end
