@@ -1,0 +1,342 @@
+
+.title {
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: crimson;
+  font-size: 60px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+  padding-left: 200px;
+  padding-top: 18px;
+  text-decoration: underline;
+  
+}
+
+.inline {
+  display: inline-block;
+  float: right;
+  padding-right: 100px;
+}
+
+.padding {
+  margin: 15px;
+  padding: 20px;
+  font-size:large;
+  text-decoration: underline;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  
+}
+
+
+.header {
+  width: 100%;
+  height: 100px;
+  background-color: lightslategrey;
+  position: absolute;
+  
+}
+
+
+
+/* .home {
+  width: 100%;
+  height: 100%;
+} */
+
+video {
+  width: 100%;
+  height: 100%;
+  bottom:0px;
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 35px;
+}
+
+/* .form{
+  width: 300px;
+  height: 500px;
+  font-size: 30px;
+  position: relative;
+  top: -600px;
+  color: white;
+  display: flex;
+} */
+
+.div1{
+  position: relative;
+  top: 100px;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-color: lightslategrey;
+}
+
+.welcome {
+  position: relative;
+  top: -650px;
+  color: white;
+  font-size: 55px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.form {
+  position: relative;
+  font-size: 30px;
+  color: black;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+
+.div2{
+  position: relative;
+  top: 100px;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* see notes below */
+  grid-auto-rows: minmax(200px, auto);
+  grid-gap: 1rem;
+}
+
+.thumbnail img {
+
+  height: 150px;
+  /* padding: 1.5rem; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+  
+}
+
+.course {
+  /* height: 200px; */
+  /*background: red;*/
+  border: 2px solid #ff0000;
+  border-radius: 4px;
+  padding: .5rem;
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+  display: flex;
+  /* -webkit-box-orient: vertical; */
+  /* -webkit-box-direction: normal; */
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  color: #5d5e5e;
+  background-color: white;
+} /* li item */
+
+.trainer {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.div3{
+  position: absolute;
+  top: 129px;
+  height: 350px;
+  width: 450px;
+  margin: auto;
+  /* left: 400px; */
+  background-color: lightslategrey;
+  border: 2px solid #ff0000;
+  
+}
+
+.div4{
+  position: absolute;
+  top: 129px;
+  height: 100%;
+  width: 50%;
+  margin: auto;
+  left: 550px;
+}
+
+.headshot{
+  height: 100px;
+  /* padding: 1.5rem; */
+  /* display: block;
+  margin-left: auto;
+  margin-right: auto; */
+  width: 100px;
+}
+.thumbnail1 img {
+
+  height: 200px;
+  /* padding: 1.5rem; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  
+}
+
+.actSection{
+  border: 2px solid #ff0000;
+  padding: 30px;
+  background-color: bisque;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.tucker {
+  display: inline;
+  text-decoration: underline;
+  text-transform: capitalize;
+  
+}
+.tuckery {
+  display: inline;
+}
+
+
+.error {
+  
+  position: relative;
+  top: 150px;
+  text-align: center; 
+  justify-content: center;
+  font-size: 55px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  display: inline;
+  
+}
+
+
+.login { 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -150px 0 0 -150px;
+  width:350px;
+  height:250px;
+  /* opacity: .8; */
+  border: 5px solid #ff0000;
+
+
+}
+.login h1 { color: #ffffff;  letter-spacing:1px; text-align:center; opacity: 1; font-size: 45px; text-shadow: black;}
+
+.tyler {
+  background-color: lightslategrey;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.divy{
+  position: absolute;
+  
+  height: 100vh;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.whitey {
+  color: #ffffff;
+  top: 10px;
+  position: relative;
+}
+
+.davy {
+  position: relative;
+  font-size: 25px;
+  color: black;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  height: 100px;
+  top: 10px;
+}
+
+.tryme{
+ height: 25px;
+ width: 145px;
+ font-size: large;
+}
+
+.trymee{
+  height: 25px;
+  width: 150px;
+  font-size: large;
+ }
+
+ .trymeee{
+  height: 25px;
+  width: 225px;
+  font-size: large;
+  
+ }
+
+.btn-primary {
+  height: 20px;
+  width: 75px;
+  font-family: Haettenschweiler, 'Arial Narrow bold', sans-serif;
+  font-size: 12px;
+}
+
+
+
+.btn-primary1 {
+  height: 20px;
+  width: 75px;
+  top: 20px;
+  position: relative;
+  font-family: Haettenschweiler, 'Arial Narrow bold', sans-serif;
+  font-size: 12px;
+}
+
+.cal{
+  position: absolute;
+  top: 200px;
+  left: 600px;
+}
+
+.div44{
+  position: absolute;
+  top: 500px;
+  height: 100%;
+  width: 450px;
+  margin: auto;
+  
+}
+.div444{
+  position: absolute;
+  top: 100px;
+  height: 100%;
+  width: 400px;
+  margin: auto;
+  
+}
+
+.whale {
+  position: absolute;
+  top: 150px;
+  width: 100%;
+  height: 100px;
+  display: inline;
+  background-color: black;
+  justify-content: center;
+  text-align: center;
+}
+
+.whaley {
+  display: inline;
+  position: relative;
+  width: 20%;
+  margin: 6rem;
+  font-family: Haettenschweiler, 'Arial Narrow bold', sans-serif;
+  font-size: 20px;
+  background-color: aqua;
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>You booked a training session from All Things Active</p>
+    <p>
+    Booking details:<br>
+    --------------------------
+    </p>
+    <p>Trainer: <%= @info.trainer.name %></p>
+    <p>Activity: <%= @info.activity.category %></p>
+    <p>Date: <%= @booking.date %></p>
+    <p>Time: <%= @booking.time %></p>
+    <p>Cost: <%= @info.cost %></p>
+    <p>Specifics: <%= @info.specifics %></p>
+    
+
+    <p>
+    Message:<br>
+    Your Trainer will contact you shortly!
+    </p>
+  </body>
+</html>

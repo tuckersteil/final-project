@@ -7,8 +7,12 @@ class TrainersController < ApplicationController
 
     def show 
         trainer = Trainer.find(params[:id])
-        render json: trainer
+        render json: trainer.activities
     rescue ActiveRecord::RecordNotFound
         render json: "Trainer not found", status: :not_found
     end 
+
+
+    
+    
 end
