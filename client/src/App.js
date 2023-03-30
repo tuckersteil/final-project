@@ -2,7 +2,7 @@ import Home from './Home';
 import './App.css';
 import NavBar from './NavBar';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useContext } from "react";
 import TrainerList from './TrainerList';
 import { useNavigate } from 'react-router-dom';
 import TrainerPage from './TrainerPage';
@@ -10,11 +10,15 @@ import Login from './Login';
 import Confirmation from './Confirmation';
 import MyBookings from './MyBookings';
 import Test from './Test';
+import video from './hp_hero_video_v3.mp4'
 
 
+export const SearchContext = React.createContext();
 function App() {
+  
   const [user, setUser] = useState(null);
-
+  const [search, setSearch] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     fetch("/me").then((r) => {
       if (r.ok) {
@@ -23,18 +27,28 @@ function App() {
     });
   }, []);
   if (!user) return <Login onLogin={setUser} />;
+  
+
+  function addValue(details){
+    setSearch(details)
+    navigate("/trainers")
+  }
 
   return (
     < >
-      <NavBar setUser={setUser}/>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/trainers" element={<TrainerList />}/>
-        <Route path="/trainers/:id" element={<TrainerPage />}/>
-        <Route path="/confirm/:id" element={<Confirmation />} />
-        <Route path="/mybookings" element={<MyBookings />} />
-        <Route path="/test" element={<Test />} />
-      </Routes>
+    <SearchContext.Provider value={search}>
+    <NavBar setUser={setUser}/>
+    
+      
+        <Routes>
+          <Route path="/" element={<Home addValue={addValue}/>}/>
+          <Route path="/trainers" element={<TrainerList />}/>
+          <Route path="/trainers/:id" element={<TrainerPage />}/>
+          <Route path="/confirm/:id" element={<Confirmation />} />
+          <Route path="/mybookings" element={<MyBookings />} />
+          <Route path="/test" element={<Test />} />
+        </Routes>
+      </SearchContext.Provider>
     </>
   );
 }

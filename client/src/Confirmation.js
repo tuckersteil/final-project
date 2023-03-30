@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Link, redirect, useNavigate, useLocation} from "react-router-dom";
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 import DayTimePicker from '@mooncake-dev/react-day-time-picker';
-
+import { SearchContext } from "./App";
 
 function Confirmation(){
-    // const [booking, setBooking] = useState([])
+    const [trainer, setTrainer] = useState([])
     const [activities, setActivities] = useState([])
     const [details, setDetails] = useState([])
     const navigate = useNavigate();
@@ -17,32 +17,31 @@ function Confirmation(){
     const location = useLocation();
     // console.log(location.state.trainer.id)
     const [tucker, setTucker] = useState([])
+    const search = useContext(SearchContext)
 
     useEffect(()=> {
         fetch(`/confirm/${id}`)
             .then((r)=> r.json())
-            .then((order)=>setDetails(order));
+            .then((order)=> {setDetails(order); setTrainer(order.trainer); setActivities(order.activity)});
     }, [])
+console.log(details, trainer, activities)
+    // useEffect(()=> {
+    //     fetch(`/confirmy/${location.state.activity.id}`)
+    //         .then((r)=> r.json())
+    //         .then((order)=>setActivities(order));
+    // }, [])
 
-    useEffect(()=> {
-        fetch(`/confirmy/${location.state.activity.id}`)
-            .then((r)=> r.json())
-            .then((order)=>setActivities(order));
-    }, [])
+     
 
-    //  console.log(activities, details)
-
-     function onChange(calDate){
-        setDate(calDate)
-      }
+     
 
 
       function handleScheduled(dateTime ){
         
         const date = dateTime.toLocaleString().split(",")[0] 
         const time = dateTime.toLocaleString().split(",")[1] 
-        // console.log(date, time )
-        handleBooking(activities, details, date, time)
+        console.log(date, time )
+        handleBooking(details, date, time)
         
          
       }
@@ -72,7 +71,7 @@ function Confirmation(){
       }
 
 
-    function handleBooking(activity, detail, date, time){
+    function handleBooking(detail, date, time){
     //console.log(activity, detail)
     const booking = {
         trainer_activity_id: parseInt(detail.id),
@@ -89,29 +88,22 @@ function Confirmation(){
         body: JSON.stringify(booking)
     })
     .then((r)=> r.json())  
-    .then((data)=>  setTucker(data));
-    setTimeout(()=> navigate("/mybookings"), 500)
+    .then((data)=>  navigate("/mybookings"));
     
 }
-
-// function delay(){
-//     navigate("/mybookings")
-
-// }
-console.log(tucker)
     return (
         <>
 
         <div className="div3">
             <picture className="thumbnail1">
-                <img src={location.state.trainer.image}/>
+                <img src={trainer.image}/>
             </picture>
             <div className="trainer">
-                <h2>{location.state.trainer.name}</h2>
-                <p>{location.state.trainer.location}</p>
-                <p>Age: {location.state.trainer.age}</p>
+                <h2>{trainer.name}</h2>
+                <p>{trainer.location}</p>
+                <p>Age: {trainer.age}</p>
                 <br></br>
-                <p><strong>Specializes in: {location.state.activity.category}</strong></p>
+                <p><strong>Specializes in: {search.activity}</strong></p>
             </div>
         </div>
 
@@ -135,7 +127,7 @@ console.log(tucker)
         <div className="cal">
             <h1>Select a Time & Date:</h1>
             <br></br>
-            {/* <Calendar onChange={onChange} value={date} key={location.state.trainer.id}/> */}
+           
            <DayTimePicker timeSlotSizeMinutes={60} onConfirm={handleScheduled } timeSlotValidator={timeSlotValidator} />
         </div> 
         </>
@@ -143,3 +135,4 @@ console.log(tucker)
 }
 export default Confirmation;
 
+ {/* <Calendar onChange={onChange} value={date} key={location.state.trainer.id}/> */}

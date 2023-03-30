@@ -29,8 +29,8 @@ class TrainerActivitiesController < ApplicationController
 
 
     def confirm
-        train_active = TrainerActivity.find_by(id: params[:id])
-        render json: train_active
+        @train_active = TrainerActivity.find_by(id: params[:id])
+        render json: @train_active, include: [:activity, :trainer]
     end 
 
     

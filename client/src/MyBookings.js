@@ -14,21 +14,19 @@ function MyBookings(){
     return (
     <>
 
-<div className="div444">
+    <div className="div2">
         {bookings.map((booking)=> 
-        <section className="actSection" key={booking.id}>
-            <h1>Training Session with:</h1>
-            <h1 className="tucker">{booking.trainer}</h1><br></br>
-            <br></br>
-            <h3 className="tuckery">Details:</h3><br></br>
-            <br></br>
-            <p className="tucker"> Location:</p><p className="tuckery"> {booking.location}</p><br></br>
-            <p className="tucker"> Sport:</p><p className="tuckery"> {booking.activity}</p><br></br>
-            <p className="tucker"> Cost:</p><p className="tuckery"> ${booking.cost}</p><br></br>
-            <p className="tucker"> Date:</p><p className="tuckery"> {booking.date}</p><br></br>
-            <p className="tucker"> Time:</p> <p className="tuckery">{booking.time}</p><br></br>
-            <br></br>
-            <br></br>
+        <section className="coursey">
+            <h1>Training Session with:</h1><br></br>
+            <h3 className="tucker">{booking.trainer}</h3><br></br>
+            
+            <h3 className="tuckery">Details:</h3>
+           
+            <p className="tuckery"> Location: <p className="tucker">{booking.location}</p></p><br></br>
+            <p className="tuckery"> Sport: <p className="tucker">{booking.activity}</p></p><br></br>
+            <p className="tuckery"> Cost: <p className="tucker">${booking.cost}</p></p><br></br>
+            <p className="tuckery"> Date: <p className="tucker">{booking.date}</p></p><br></br>
+            <p className="tuckery"> Time: <p className="tucker">{booking.time}</p></p> <br></br>
         </section>
         )}
     </div>

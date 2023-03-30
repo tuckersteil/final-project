@@ -139,6 +139,24 @@ video {
   background-color: white;
 } /* li item */
 
+.coursey {
+  /* height: 200px; */
+  /*background: red;*/
+  border: 2px solid #ff0000;
+  border-radius: 4px;
+  padding: .75rem;
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+  display: flex;
+  /* -webkit-box-orient: vertical; */
+  /* -webkit-box-direction: normal; */
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  color: #5d5e5e;
+  background-color: bisque;
+} /* li item */
+
 .trainer {
   text-align: center;
   text-transform: capitalize;
@@ -315,7 +333,7 @@ video {
   position: absolute;
   top: 100px;
   height: 100%;
-  width: 400px;
+  width: 100%;
   margin: auto;
   
 }
@@ -339,4 +357,12 @@ video {
   font-family: Haettenschweiler, 'Arial Narrow bold', sans-serif;
   font-size: 20px;
   background-color: aqua;
+}
+
+.actSection1{
+  border: 2px solid #ff0000;
+  padding: 30px;
+  background-color: bisque;
+  font-family: 'Courier New', Courier, monospace;
+  width: 200px;
 }

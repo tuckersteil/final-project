@@ -18,7 +18,7 @@ function Login({onLogin}){
                 <p className="whitey">
                     Don't have an account? &nbsp;
                 </p>
-                <button onClick={() => setShowLogin(false)} class="btn-primary1">
+                <button onClick={() => setShowLogin(false)} className="btn-primary1">
                         Sign Up
                     </button>
             </>

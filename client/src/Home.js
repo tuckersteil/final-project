@@ -1,48 +1,51 @@
 import video from './hp_hero_video_v3.mp4'
-import React, { useEffect, useState, createContext } from "react";
-import TrainerList from './TrainerList';
-import { Link, redirect, useNavigate } from "react-router-dom";
+import React, { useState} from "react";
+import { useNavigate } from "react-router-dom";
 
-
-function Home(){
-   const SearchContext = createContext()
-    const [submitSeach, setSubmitSearch] = useState({
+function Home({addValue}){
+    
+    const [submitSearch, setSubmitSearch] = useState({
         activity: '',
         location: ''
       })
+     
       const navigate = useNavigate();
 
     function handleChange(event){
         event.preventDefault()
         setSubmitSearch({
-          ...submitSeach, 
-          [event.target.name]: event.target.value
+          ...submitSearch, 
+          [event.target.name]: event.target.value.toLowerCase()
         })
+       
     }
 
     function handleSubmit(event){
         event.preventDefault()
         const lowercase = {
-            activity: submitSeach.activity.toLowerCase(),
-            location: submitSeach.location.toLowerCase()
+            activity: submitSearch.activity,
+            location: submitSearch.location
         }
-        navigate("/trainers", {state: lowercase})
+        // navigate("/trainers", {state: lowercase})
+       addValue(lowercase)
     }
 
-   console.log(submitSeach)
+   console.log(submitSearch)
 
     return (
+        <>
+        
         <div className='div1'>
             <video  src={video} autoPlay loop muted />
             <h1 className='welcome' >Welcome To All-Things-Active</h1>
-            <SearchContext.Provider value={submitSeach}>
+            
                 <form className='welcome' onSubmit={handleSubmit}>
                         <input 
                         placeholder='Enter Activity'
                         className='form'
                         type="text"
                         name='activity'
-                        value={submitSeach.activity}
+                        value={submitSearch.activity}
                         onChange={handleChange}
                         >
                         </input>
@@ -51,7 +54,7 @@ function Home(){
                         className='form'
                         type="text"
                         name='location'
-                        value={submitSeach.location}
+                        value={submitSearch.location}
                         onChange={handleChange}
                         >
                         </input>
@@ -60,12 +63,12 @@ function Home(){
                         <button className='form'  type='submit'>Find Your Trainer
                         </button>
                     </form>
-                </SearchContext.Provider>
                 <div className='header1'>
                      @2023 All-Things-Active, Inc. Privacy Policy Terms of Service
                 </div>
+               
         </div>
-        
+        </>
     )
 }
 

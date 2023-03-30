@@ -1,16 +1,18 @@
-import { useEffect, useState, createContext, useContext } from "react";
+
+import React, { createContext, useEffect, useState, useContext } from "react";
 import { Link, redirect, useNavigate, useLocation} from "react-router-dom";
+import { SearchContext } from "./App";
+
 
 function TrainerList(){
 const [trainers, setTrainers] = useState([])
 const [errors, setErrors] = useState([]);
-const location = useLocation();
-console.log(search)
-const navigate = useNavigate();
 const search = useContext(SearchContext)
+const navigate = useNavigate();
+console.log(search)
 
 useEffect(()=> {
-    fetch(`/trainers/${location.state.activity}/${location.state.location}`)
+    fetch(`/trainers/${search.activity}/${search.location}`)
         .then((r)=> {
             if (r.ok){
                 r.json().then((trainers)=> setTrainers(trainers))
@@ -20,20 +22,19 @@ useEffect(()=> {
             }
         })   
 }, [])
-
-function handleClick(trainer){
-console.log(trainer)
-navigate(`/trainers/${trainer.id}`, {state: {trainer, location}})
-}
+    console.log(trainers)
+    function handleClick(trainer){
+    console.log(trainer)
+    navigate(`/trainers/${trainer.id}`)
+    }
 
 
     return (
         <div >
-            
+           
           {errors.map((err) => (
-                    <div key={err} className="div2 error">{`${err.error} for "${location.state.activity}" in "${location.state.location}"`}</div>
+                    <div key={err} className="div2 error">{`${err.error} for "${search.activity}" in "${search.location}"`}</div>
                 ))}
-
             <div className="div2">
             {trainers.map((trainer)=>
                 <div className="course" key={trainer.id}>
@@ -45,12 +46,13 @@ navigate(`/trainers/${trainer.id}`, {state: {trainer, location}})
                         <p>{trainer.location}</p>
                         <p>Age: {trainer.age}</p>
                         <br></br>
-                        <p>Specializes in: {location.state.activity}</p>
+                        <p>Specializes in: {search.activity}</p>
                     </div>
                     <button onClick={()=> {handleClick(trainer)}}>View Profile</button>
                 </div>
             )}
             </div>
+            
         </div>
     )
 }
