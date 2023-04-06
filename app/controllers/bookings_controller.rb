@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
       # BookingMailer.with(booking: @booking, info: @info).new_booking_email.deliver_later
       render json: @booking
     else 
-      render json: { errors: booking.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: @booking.errors.full_messages }, status: :unprocessable_entity
     end
   end 
 

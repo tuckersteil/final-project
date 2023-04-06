@@ -4,7 +4,7 @@ import { Link, redirect, useNavigate, useLocation} from "react-router-dom";
 import { SearchContext } from "./App";
 
 
-function TrainerList(){
+function TrainerList({addTrainer}){
 const [trainers, setTrainers] = useState([])
 const [errors, setErrors] = useState([]);
 const search = useContext(SearchContext)
@@ -22,10 +22,12 @@ useEffect(()=> {
             }
         })   
 }, [])
+
     console.log(trainers)
     function handleClick(trainer){
     console.log(trainer)
-    navigate(`/trainers/${trainer.id}`)
+    addTrainer(trainer)
+   
     }
 
 

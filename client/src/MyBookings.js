@@ -9,8 +9,17 @@ function MyBookings(){
             .then((r)=> r.json())
             .then((order)=>setBookings(order));
     }, [])
-
+    
     console.log(bookings)
+
+    function editBooking(booking){
+        console.log(booking)
+    }
+
+    function deleteBooking(booking){
+        console.log(booking)
+    }
+
     return (
     <>
 
@@ -27,6 +36,9 @@ function MyBookings(){
             <p className="tuckery"> Cost: <p className="tucker">${booking.cost}</p></p><br></br>
             <p className="tuckery"> Date: <p className="tucker">{booking.date}</p></p><br></br>
             <p className="tuckery"> Time: <p className="tucker">{booking.time}</p></p> <br></br>
+            <button onClick={()=> {editBooking(booking)}}>Edit Time/Date</button>
+            <br></br>
+            <button onClick={()=> {deleteBooking(booking)}}>Cancel Session</button>
         </section>
         )}
     </div>

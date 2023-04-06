@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Link, redirect, useNavigate, useLocation} from "react-router-dom";
 import 'react-calendar/dist/Calendar.css';
 import { SearchContext } from "./App";
-function TrainerPage(){
+function TrainerPage({addBooking}){
     const search = useContext(SearchContext)
     const [activities, setActivities] = useState([])
     const [trainer, setTrainer] = useState([])
@@ -34,7 +34,8 @@ console.log(activities, details, trainer)
 
 function handleBooking(detail, activity){
     console.log(detail, activity, id)
-    navigate(`/confirm/${detail.id}`, {state: {detail, activity, trainer}})
+    addBooking(detail, activity)
+    // navigate(`/confirm/${detail.id}`, {state: {detail, activity, trainer}})
 }
 
 
