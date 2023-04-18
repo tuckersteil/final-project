@@ -10,6 +10,7 @@ import Login from './Login';
 import Confirmation from './Confirmation';
 import MyBookings from './MyBookings';
 import Test from './Test';
+import Update from './Update';
 
 
 
@@ -55,6 +56,7 @@ console.log(search)
           <Route path="/trainers" element={<TrainerList addTrainer={addTrainer}/>}/>
           <Route path="/trainers/:id" element={<TrainerPage addBooking={addBooking}/>}/>
           <Route path="/confirm/:id" element={<Confirmation />} />
+          <Route path="/update/:id" element={<Update />} />
           <Route path="/mybookings" element={<MyBookings />} />
           <Route path="/test" element={<Test />} />
         </Routes>

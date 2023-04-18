@@ -9,7 +9,7 @@ function Home({addValue}){
         location: ''
       })
      
-      const navigate = useNavigate();
+    
 
     function handleChange(event){
         event.preventDefault()

@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Link, redirect, useNavigate, useLocation} from "react-router-dom";
-
+import moment from "moment";
 import 'react-calendar/dist/Calendar.css';
 import DayTimePicker from '@mooncake-dev/react-day-time-picker';
 import { SearchContext } from "./App";
@@ -21,72 +21,48 @@ function Confirmation(){
     const search = useContext(SearchContext)
     const [takenTimes, setTakenTimes] = useState([])
     const [calendar, setCalendar] = useState([])
-    console.log(id)
-    console.log(search)
 
     useEffect(()=> {
         fetch(`/timey/${search.trainer.id}`)
             .then((r)=> r.json())
             .then((times)=> setTakenTimes(times.taken_times));
     }, [])
+
    
     console.log(takenTimes)
 
     function handleScheduled(dateTime){
+        const full_date = moment(dateTime).format('MMMM Do YYYY, h:mm a')
         fetch(`/trainers/${search.trainer.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({time: dateTime})
+              body: JSON.stringify(full_date)
         })
         .then((r)=> r.json())  
         .then((data)=>  setCalendar(data))
-        console.log(dateTime)
-        const date = dateTime.toLocaleString().split(",")[0] 
-        const time = dateTime.toLocaleString().split(",")[1] 
-        console.log(date, time)
-        handleBooking(date, time)  
+        handleBooking(full_date)  
       }
 
     function timeSlotValidator(slotTime) {
+        const full_date = moment(slotTime).format('MMMM Do YYYY, h:mm a')
        const tucker = takenTimes.filter((time)=> {
-            if (JSON.stringify(time) == JSON.stringify(slotTime))
+            if (time == full_date)
                 return true
             else 
                 return false
         })
-        const eveningTime = new Date(
-          slotTime.getFullYear(),
-          slotTime.getMonth(),
-          slotTime.getDate(),
-          8,
-          0,
-          0, 
-        ) 
-        const morning = new Date(
-            slotTime.getFullYear(),
-            slotTime.getMonth(),
-            slotTime.getDate(),
-            19,
-            0,
-            0,
-          ) 
-        
-        // const isValid = slotTime.getTime() > eveningTime.getTime() && slotTime.getTime() < morning.getTime() ;
         return tucker >= 0;
       }
 
 
-    function handleBooking(date, time){
-    console.log(date, time)
+    function handleBooking(full_date){
     const booking = {
         trainer_activity_id: parseInt(id),
-        date: date,
-        time: time, 
-
+        date_time: full_date
     }
-    console.log(booking)
+    console.log(JSON.stringify(booking))
     fetch('/bookings', {
         method: "POST",
         headers: {

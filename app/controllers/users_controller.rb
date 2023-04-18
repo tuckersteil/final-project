@@ -36,7 +36,7 @@ class UsersController < ApplicationController
         @user_bookings.each do |booking|
             trainer = TrainerActivity.find(booking.trainer_activity_id)
             if final.exclude?(trainer)
-                final << {trainer: trainer.trainer.name, location: trainer.trainer.location, activity: trainer.activity.category, time: booking.time, date: booking.date, cost: trainer.cost, id: booking.id}
+                final << {trainer: trainer.trainer.name, trainer_id: trainer.trainer.id, location: trainer.trainer.location, activity: trainer.activity.category, date: booking.date_time, cost: trainer.cost, id: booking.id, train_active: booking.trainer_activity_id}
             end 
         end
         render json: final

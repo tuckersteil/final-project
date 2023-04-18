@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/booksesh", to: "users#userbooking"
   get "/timey/:train", to: "trainers#timey"
+  patch "/trainers/:name/:time", to: "trainers#remove"
+  patch "/removey/:name/:time", to: "trainers#removey"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
