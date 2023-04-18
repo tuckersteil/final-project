@@ -1,5 +1,4 @@
-import Home from "./Home";
-import { Link, redirect, useNavigate, useLocation} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 function NavBar({setUser}){
     const navigate = useNavigate();
 
@@ -42,17 +41,3 @@ function NavBar({setUser}){
 }
 export default NavBar;
 
-{/* <div className="header-primary">
-            <h1 className="title">All Things Active
-            <div className="inline">
-                <button className="padding">
-                    My Sessions
-                </button>
-
-                <button className="padding">
-                    Logout
-                </button>
-            </div>
-            </h1>
-            
-        </div> */}

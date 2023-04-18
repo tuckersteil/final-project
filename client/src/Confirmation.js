@@ -1,23 +1,15 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { Link, redirect, useNavigate, useLocation} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import 'react-calendar/dist/Calendar.css';
 import DayTimePicker from '@mooncake-dev/react-day-time-picker';
 import { SearchContext } from "./App";
-import Calendar from "./Calendar";
+
 
 function Confirmation(){
-    // const [trainer, setTrainer] = useState([])
-    // const [activities, setActivities] = useState([])
-    // const [details, setDetails] = useState([])
     const navigate = useNavigate();
-    // const [date, setDate] = useState(new Date());
-    // let today = date.toLocaleString().split(",")[0] 
     let { id } = useParams();
-    // const location = useLocation();
-    // console.log(location.state.trainer.id)
-    // const [tucker, setTucker] = useState([])
     const search = useContext(SearchContext)
     const [takenTimes, setTakenTimes] = useState([])
     const [calendar, setCalendar] = useState([])
@@ -119,24 +111,4 @@ function Confirmation(){
 }
 export default Confirmation;
 
- {/* <Calendar onChange={onChange} value={date} key={location.state.trainer.id}/> */}
-//  <div className="cal">
-//             <h1>Select a Time & Date:</h1>
-//             <br></br>
-           
-//            <DayTimePicker timeSlotSizeMinutes={60} onConfirm={handleScheduled } timeSlotValidator={timeSlotValidator} />
-//         </div> 
-
-
- // useEffect(()=> {
-    //     fetch(`/confirm/${id}`)
-    //         .then((r)=> r.json())
-    //         .then((order)=> {setDetails(order); setTrainer(...trainer, order.trainer); setActivities(order.activity)});
-    // }, [])
-
-    //console.log(details, trainer, activities, details.trainer_id, takenTimes)
-    // useEffect(()=> {
-    //     fetch(`/confirmy/${location.state.activity.id}`)
-    //         .then((r)=> r.json())
-    //         .then((order)=>setActivities(order));
-    // }, [])
+ 

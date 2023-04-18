@@ -1,15 +1,13 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { Link, redirect, useNavigate, useLocation} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 import moment from "moment";
 import 'react-calendar/dist/Calendar.css';
 import DayTimePicker from '@mooncake-dev/react-day-time-picker';
-import { SearchContext } from "./App";
 
 function Update(){
     const [takenTimes, setTakenTimes] = useState([])
     const [calendar, setCalendar] = useState([])
-    const [details, setDetails] = useState([]) 
     const navigate = useNavigate();
     const location = useLocation();
     let { id } = useParams();

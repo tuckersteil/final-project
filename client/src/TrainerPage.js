@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { Link, redirect, useNavigate, useLocation} from "react-router-dom";
 import 'react-calendar/dist/Calendar.css';
 import { SearchContext } from "./App";
 function TrainerPage({addBooking}){
@@ -9,12 +8,8 @@ function TrainerPage({addBooking}){
     const [trainer, setTrainer] = useState([])
     const [details, setDetails] = useState([])
     let { id } = useParams();
-    // const location = useLocation();
-    const [date, setDate] = useState(new Date());
-    let today = date.toLocaleString().split(",")[0] 
-    const [tucker, setTucker] = useState([])
-    const navigate = useNavigate();
-    // let trainer = location.state.trainer
+   
+   
 console.log(search)
 
     useEffect(()=> {
@@ -35,11 +30,8 @@ console.log(activities, details, trainer)
 function handleBooking(detail, activity){
     console.log(detail, activity, id)
     addBooking(detail, activity)
-    // navigate(`/confirm/${detail.id}`, {state: {detail, activity, trainer}})
 }
 
-
-// console.log(tucker)
 
     return (
         <>

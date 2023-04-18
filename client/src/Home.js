@@ -1,6 +1,6 @@
 import video from './hp_hero_video_v3.mp4'
 import React, { useState} from "react";
-import { useNavigate } from "react-router-dom";
+
 
 function Home({addValue}){
     
@@ -9,7 +9,6 @@ function Home({addValue}){
         location: ''
       })
      
-    
 
     function handleChange(event){
         event.preventDefault()
@@ -26,7 +25,6 @@ function Home({addValue}){
             activity: submitSearch.activity,
             location: submitSearch.location
         }
-        // navigate("/trainers", {state: lowercase})
        addValue(lowercase)
     }
 
@@ -74,23 +72,3 @@ function Home({addValue}){
 
 export default Home;
 
-// {/* <video className="size" src={video} autoPlay loop muted/> */}
-// <div className="home">
-//             <video  src={video} autoPlay loop muted/>
-            // <div className='content'>
-            //     <h1 >Welcome To All-Things-Active</h1>
-                // <form className='form'>
-                //     <input 
-                //     placeholder='Enter Activity'
-                //     className='form'
-                //     >
-                //     </input>
-                //     <input
-                //     placeholder='Enter Location'
-                //     className='form'
-                //     >
-                //     </input>
-                //     <button  className='form'>Find Your Trainer</button>
-                // </form>
-            // </div>
-//         </div>

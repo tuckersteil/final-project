@@ -1,14 +1,12 @@
 
-import React, { createContext, useEffect, useState, useContext } from "react";
-import { Link, redirect, useNavigate, useLocation} from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
 import { SearchContext } from "./App";
-
 
 function TrainerList({addTrainer}){
 const [trainers, setTrainers] = useState([])
 const [errors, setErrors] = useState([]);
 const search = useContext(SearchContext)
-const navigate = useNavigate();
+
 console.log(search)
 
 useEffect(()=> {

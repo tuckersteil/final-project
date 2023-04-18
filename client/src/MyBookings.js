@@ -1,7 +1,6 @@
 import { useEffect, useState} from "react";
-import { useParams } from "react-router-dom";
-import { Link, redirect, useNavigate, useLocation} from "react-router-dom";
-import moment from "moment";
+import { useNavigate} from "react-router-dom";
+
 
 function MyBookings(){
     const [bookings, setBookings] = useState([])
