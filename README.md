@@ -18,6 +18,10 @@ Los angeles, san diego, san francisco, austin, houston, and dallas.
 Currently you can search for these activities:
 Basketball, yoga, golf, soccer, soccer, baseball, chiro, surfing, volleyball, tennis, archery, karate, skateboarding, dance, track, hockey, strength training, and lacrosse. 
 
+# Getting started 
+First, run bundle install to install the dependencies in the Gemfile.
+There is some seed data currently set up in db/seed.rb.  To add the seed data, make sure it isnt commented out, and run rails "db:migrate". After that to get the backend server running, you will need to run "rails s". Then to get the front end server running, you will need to run "npm start --prefix client". 
+
 
 # Credit 
 I used a video for the home screen / login screen from coachup.com
