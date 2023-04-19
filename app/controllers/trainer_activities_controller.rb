@@ -33,44 +33,9 @@ class TrainerActivitiesController < ApplicationController
         render json: @train_active, include: [:activity, :trainer]
     end 
 
-    
 
 
 end
 
 
- #     trainers = Trainer.all
-    #     trainer = trainers.where(location: params[:location])
-    #     trainer_ids = []
-    #     trainer.each do |person|
-    #        trainer_ids << person.id
-    #     end
-
-    #     activities = Activity.all
-    #     activity = activities.where(category: params[:activity])
-    #     activity_ids = []
-    #     activity.each do |act|
-    #         activity_ids << act.id
-    #     end 
-
-
-    #     matching = []
-    #    final_finds = TrainerActivity.all
-    #     final_finds.each do |trave|
-    #         trainer_ids.each do |the_id|
-    #             activity_ids.each do |act_id|
-    #                 if the_id === trave.trainer_id && act_id === trave.activity_id
-    #                     matching << trave
-    #                 end
-    #             end 
-    #         end 
-    #     end
-
-    #     final_final = []
-    #     matching.each do |fits|
-    #         final_output = Trainer.find_by(id: fits.trainer_id)
-    #         if final_final.exclude?(final_output)
-    #             final_final << final_output
-    #         end 
-    #     end 
-    #     render json: final_final
+ 

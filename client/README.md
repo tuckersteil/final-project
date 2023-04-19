@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+# Phase-5 Project 
+My phase 5 project is a app that allows you to search for trainers all over the U.S. and book individual or group training sessions with them. The name of my app is "All Things Active", which implies your able to search for all sorts of active training activities.  You are not limited to main sports such as basketball or football, you can search for karate, chiropractor, and even yoga classes. The main goal of this app is to make a one stop shop for...you guessed it, all things active!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Functionality 
+1. When you first visit the site, you will be prompted to either sign in or sign up.  After making an account you will be directed to the Home page. 
+2. The Home page is composed of a welcome message and a search form, where you can search an activity and location. 
+3. Once you enter the search and click "find your trainer" you will be taken to a page of all the trainers that offer training for the location and activity you entered.
+4. From there you can then click on a trianer to see all the activities they offer. 
+5. Once on the trainer page you can schedule a session for the activity you initially searched for, in addition to other activities that trainer offers. 
+6. Once you click "schedule", you will be taken to a confirmation page with that trainers calendar. To which you can book a time and date based on that trainers availibility. 
+7. Once you confirm and schedule the session, you will be directed to the my bookings tab.  Where you can see all of the bookings youve ever made. 
+8. From there, you can also delete your booking, or update the time/date of the booking. 
 
-## Available Scripts
+# Cities and Activities
+Currently you can search for activities in:
+Los angeles, san diego, san francisco, austin, houston, and dallas. 
 
-In the project directory, you can run:
+Currently you can search for these activities:
+Basketball, yoga, golf, soccer, soccer, baseball, chiro, surfing, volleyball, tennis, archery, karate, skateboarding, dance, track, hockey, strength training, and lacrosse. 
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Credit 
+I used a video for the home screen / login screen from coachup.com
+I also used some random images for the trainers pictures from https://ozgrozer.github.io/100k-faces

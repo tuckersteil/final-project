@@ -43,10 +43,6 @@ def update
   render json: booking
 end 
 
-      private
-    
-      # def booking_params
-      #   params.permit(:user_id, :trainer_activity_id, :time, :date, :email)
-      # end
+      
     
 end

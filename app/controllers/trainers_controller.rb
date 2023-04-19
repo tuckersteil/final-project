@@ -65,17 +65,3 @@ class TrainersController < ApplicationController
     
 end
 
-
-# def remove 
-#     trainer = Trainer.find_by(id: params[:name])
-#     tucker = trainer.taken_times 
-#     list = []
-#     tucker.each do |tuck|
-#         if tuck != params[:time]
-#             list << tuck
-#             trainer.taken_times = list 
-#             trainer.save
-#         end
-#     end
-#     render json: trainer
-# end 
