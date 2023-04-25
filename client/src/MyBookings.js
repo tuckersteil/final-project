@@ -15,24 +15,23 @@ function MyBookings(){
     
     function editBooking(booking){
         navigate(`/update/${booking.train_active}`, {state: booking})
-       
     }
 
     function deleteBooking(booking){
-        
         fetch(`/bookings/${booking.id}`, {
             method: "DELETE",
           })
-          .then((r)=> r.json())  
-          .then((data)=>  setBookings(data));
+        .then((r)=> r.json())  
+        .then((data)=>  setBookings(data));
 
-          fetch(`/removey/${booking.trainer_id}/${booking.date}`, {
+
+        fetch(`/removey/${booking.trainer_id}/${booking.date}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify(booking)
-        })
+            })
         .then((r)=> r.json())  
         .then((data)=>  console.log(data))
 

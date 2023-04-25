@@ -5,39 +5,27 @@ import moment from "moment";
 import 'react-calendar/dist/Calendar.css';
 import DayTimePicker from '@mooncake-dev/react-day-time-picker';
 import { SearchContext } from "./App";
+import TrainerActivityCard from "./TrainerActivityCard";
 
 
-function Confirmation(){
+function Confirmation({trainer, booking}){
     const navigate = useNavigate();
     let { id } = useParams();
     const search = useContext(SearchContext)
-    const [takenTimes, setTakenTimes] = useState([])
+    const [takenTimes, setTakenTimes] = useState(trainer.taken_times)
     const [calendar, setCalendar] = useState([])
+    const clicked = true
 
-    useEffect(()=> {
-        fetch(`/timey/${search.trainer.id}`)
-            .then((r)=> r.json())
-            .then((times)=> setTakenTimes(times.taken_times));
-    }, [])
+    // useEffect(()=> {
+    //     fetch(`/timey/${trainer.id}`)
+    //         .then((r)=> r.json())
+    //         .then((times)=> setTakenTimes(times.taken_times));
+    // }, [])
 
    
-    console.log(takenTimes)
+     console.log(trainer, booking, takenTimes)
 
-    function handleScheduled(dateTime){
-        const full_date = moment(dateTime).format('MMMM Do YYYY, h:mm a')
-        fetch(`/trainers/${search.trainer.id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(full_date)
-        })
-        .then((r)=> r.json())  
-        .then((data)=>  setCalendar(data))
-        handleBooking(full_date)  
-      }
-
-    function timeSlotValidator(slotTime) {
+     function timeSlotValidator(slotTime) {
         const full_date = moment(slotTime).format('MMMM Do YYYY, h:mm a')
        const tucker = takenTimes.filter((time)=> {
             if (time == full_date)
@@ -48,13 +36,27 @@ function Confirmation(){
         return tucker >= 0;
       }
 
+    function handleScheduled(dateTime){
+        const full_date = moment(dateTime).format('MMMM Do YYYY, h:mm a')
+        fetch(`/trainers/${trainer.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(full_date)
+        })
+        .then((r)=> r.json())  
+        .then((data)=>  setTakenTimes(data))
+        handleBooking(full_date)  
+      }
 
     function handleBooking(full_date){
+        console.log(takenTimes)
     const booking = {
         trainer_activity_id: parseInt(id),
         date_time: full_date
     }
-    console.log(JSON.stringify(booking))
+    
     fetch('/bookings', {
         method: "POST",
         headers: {
@@ -68,44 +70,28 @@ function Confirmation(){
 }
     return (
         <>
-
         <div className="div3">
             <picture className="thumbnail1">
-                <img src={search.trainer.image}/>
+                <img src={trainer.image}/>
             </picture>
             <div className="trainer">
-                <h2>{search.trainer.name}</h2>
-                <p>{search.trainer.location}</p>
-                <p>Age: {search.trainer.age}</p>
+                <h2>{trainer.name}</h2>
+                <p>{trainer.location}</p>
+                <p>Age: {trainer.age}</p>
                 <br></br>
                 <p><strong>Specializes in: {search.activity}</strong></p>
             </div>
         </div>
 
         <div className="div44">
-            <section className="actSection" >
-                <h1>You Selected:</h1><br></br>
-                <h1 className="tucker">{search.booking.activity.category}</h1><br></br>
-                <br></br>
-                <p className="tucker">Lesson Type:</p> <p className="tuckery">{search.booking.activity.lesson_type}</p><br></br>
-                <p className="tucker">Class Size:</p> <p className="tuckery">{search.booking.activity.size}</p><br></br>
-                <p className="tucker"> Cost:</p><p className="tuckery"> ${search.booking.detail.cost}</p><br></br>
-                <p className="tucker"> Length:</p><p className="tuckery"> {search.booking.detail.time}</p><br></br>
-                <br></br>
-                <p className="tucker"> Details:</p> <p className="tuckery">{search.booking.detail.specifics}</p><br></br>
-                <br></br>
-                <br></br>
-            </section>
-            
+            <TrainerActivityCard activity={booking} clicked={clicked}/>
         </div>
+
         <div className="cal">
             <h1>Select a Time & Date:</h1>
             <br></br>
-           
            <DayTimePicker  timeSlotSizeMinutes={60} onConfirm={handleScheduled } timeSlotValidator={timeSlotValidator} />
         </div> 
-
-        
         </>
     )
 }

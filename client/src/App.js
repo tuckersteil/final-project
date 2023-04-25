@@ -16,9 +16,12 @@ import Update from './Update';
 export const SearchContext = React.createContext();
 function App() {
   
+  const [trainer, setTrainer] = useState(null)
   const [user, setUser] = useState(null);
   const [search, setSearch] = useState(null);
+  const [booking, setBookings] = useState(null);
   const navigate = useNavigate();
+
   useEffect(() => {
     fetch("/me").then((r) => {
       if (r.ok) {
@@ -28,6 +31,7 @@ function App() {
   }, []);
   if (!user) return <Login onLogin={setUser} />;
   
+  console.log(user)
 
   function addValue(details){
     setSearch(details)
@@ -35,15 +39,14 @@ function App() {
   }
 
   function addTrainer(trainer){
-    setSearch({...search, trainer})
+    setTrainer(trainer)
     navigate(`/trainers/${trainer.id}`)
   }
 
-  function addBooking(detail, activity){
-    const booking = {detail, activity}
-    console.log(booking)
-    setSearch({...search, booking})
-    navigate(`/confirm/${detail.id}`)
+  function addBooking(activity){
+    console.log(activity, trainer)
+    setBookings(activity)
+    navigate(`/confirm/${activity.id}`)
   }
 console.log(search)
   return (
@@ -53,8 +56,8 @@ console.log(search)
         <Routes>
           <Route path="/" element={<Home addValue={addValue}/>}/>
           <Route path="/trainers" element={<TrainerList addTrainer={addTrainer}/>}/>
-          <Route path="/trainers/:id" element={<TrainerPage addBooking={addBooking}/>}/>
-          <Route path="/confirm/:id" element={<Confirmation />} />
+          <Route path="/trainers/:id" element={<TrainerPage addBooking={addBooking} trainer={trainer}/>}/>
+          <Route path="/confirm/:id" element={<Confirmation trainer={trainer} booking={booking}/>} />
           <Route path="/update/:id" element={<Update />} />
           <Route path="/mybookings" element={<MyBookings />} />
         </Routes>

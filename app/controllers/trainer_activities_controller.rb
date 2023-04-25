@@ -5,7 +5,7 @@ class TrainerActivitiesController < ApplicationController
     end
 
     def show 
-        train_active = TrainerActivity.where(trainer_id: params[:id])
+        train_active = TrainerActivity.where(id: params[:id])
         render json: train_active
     rescue ActiveRecord::RecordNotFound
         render json: "Trainer Activity not found", status: :not_found
@@ -25,6 +25,7 @@ class TrainerActivitiesController < ApplicationController
         else 
             render json: {error: "No Available Trainers"}, status: :not_found
         end
+        
     end 
 
 

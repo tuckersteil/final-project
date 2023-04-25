@@ -2,36 +2,25 @@ import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import 'react-calendar/dist/Calendar.css';
 import { SearchContext } from "./App";
-function TrainerPage({addBooking}){
+import TrainerActivityCard
+ from "./TrainerActivityCard";
+function TrainerPage({addBooking, trainer}){
     const search = useContext(SearchContext)
-    const [activities, setActivities] = useState([])
-    const [trainer, setTrainer] = useState([])
-    const [details, setDetails] = useState([])
+    const [activities, setActivities] = useState(trainer.trainer_activities)
+    // const [trainer, setTrainer] = useState([])
+     const [details, setDetails] = useState([])
+    //  const [clicked, setClicked]= useState(false)
+    const clicked = false
     let { id } = useParams();
    
-   
-console.log(search)
+    console.log(trainer)
+    console.log(search)
+    console.log(activities)
 
-    useEffect(()=> {
-        fetch(`/trainers/${id}`)
-            .then((r)=> r.json())
-            .then((activities) => {setActivities(activities.activities); setTrainer(activities)});
-    }, [])
-
-    useEffect(()=> {
-        fetch(`/trainer_activities/${id}`)
-            .then((r)=> r.json())
-            .then((activities)=> setDetails(activities));
-    }, [])
-
-console.log(activities, details, trainer)
-
-
-function handleBooking(detail, activity){
-    console.log(detail, activity, id)
-    addBooking(detail, activity)
+function handleBooking( activity){
+    console.log(activity, trainer)
+     addBooking(activity)
 }
-
 
     return (
         <>
@@ -48,15 +37,28 @@ function handleBooking(detail, activity){
             </div>
         </div>
         
-       
         <div className="div4">
-        {activities.map((activity)=>( activity.category === search.activity?
-            (<div key={activity.id}>
+            {activities.map((activity)=> (activity.activity.category === search.activity? 
+                (<TrainerActivityCard key={activity.id} activity={activity} handleBooking={handleBooking} clicked={clicked}/>)
+                :
+                (<div key={activity.id}></div>
+            )))}
+            {activities.map((activity)=> (activity.activity.category !== search.activity? 
+                (<TrainerActivityCard key={activity.id} activity={activity} handleBooking={handleBooking} clicked={clicked}/>)
+                :
+                (<div key={activity.id}></div>
+            )))}
+        </div>
+        
+       
+        {/* <div className="div4">
+        {trainer.trainer_activities.map((trainer)=>( trainer.activity.category === search.activity?
+            (<div key={trainer.id}>
                 <section className="actSection" >
-                    <h1 className="tucker">{activity.category}</h1><br></br>
+                    <h1 className="tucker">{trainer.activity.category}</h1><br></br>
                     <br></br>
-                    <p className="tucker">Lesson Type:</p> <p className="tuckery">{activity.lesson_type}</p><br></br>
-                    <p className="tucker">Class Size:</p> <p className="tuckery">{activity.size}</p><br></br>
+                    <p className="tucker">Lesson Type:</p> <p className="tuckery">{trainer.activity.lesson_type}</p><br></br>
+                    <p className="tucker">Class Size:</p> <p className="tuckery">{trainer.activity.size}</p><br></br>
                     {details.map((detail)=> ( activity.id === detail.activity_id?
                     (<div key={detail.id}>
                         <p className="tucker"> Cost:</p><p className="tuckery"> ${detail.cost}</p><br></br>
@@ -106,8 +108,21 @@ function handleBooking(detail, activity){
         ))}
 
 
-        </div>
+        </div> */}
         </>
     )
 }
 export default TrainerPage;
+
+
+// useEffect(()=> {
+    //     fetch(`/trainers/${id}`)
+    //         .then((r)=> r.json())
+    //         .then((activities) => {setActivities(activities.activities); setTrainer(activities)});
+    // }, [])
+
+    // useEffect(()=> {
+    //     fetch(`/trainer_activities/${id}`)
+    //         .then((r)=> r.json())
+    //         .then((activities)=> setDetails(activities));
+    // }, [])
