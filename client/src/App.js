@@ -19,19 +19,20 @@ function App() {
   const [trainer, setTrainer] = useState(null)
   const [user, setUser] = useState(null);
   const [search, setSearch] = useState(null);
-  const [booking, setBookings] = useState(null);
+  const [booking, setBooking] = useState(null);
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => setUser(user.bookings));
       }
     });
   }, []);
   if (!user) return <Login onLogin={setUser} />;
   
   console.log(user)
+
 
   function addValue(details){
     setSearch(details)
@@ -44,11 +45,41 @@ function App() {
   }
 
   function addBooking(activity){
-    console.log(activity, trainer)
-    setBookings(activity)
+    setBooking(activity)
     navigate(`/confirm/${activity.id}`)
   }
+
+  function newBooking(book){
+    const new_booking = {
+      id: book.id,
+      activity: booking.activity.category,
+      cost: booking.cost,
+      date: book.date_time,
+      location: trainer.location,
+      train_active: book.trainer_activity_id,
+      trainer: trainer.name,
+      trainer_id: trainer.id
+    }
+    console.log(new_booking)
+    
+   setUser([...user, new_booking])
+   navigate("/mybookings")
+  }
+
+  function updateBooking(){
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user.bookings));
+      }
+    });
+    setTimeout(()=> {
+      navigate("/mybookings")
+    }, 500);
+    
+  }
+  console.log(user)
 console.log(search)
+
   return (
     < >
     <SearchContext.Provider value={search}>
@@ -57,9 +88,9 @@ console.log(search)
           <Route path="/" element={<Home addValue={addValue}/>}/>
           <Route path="/trainers" element={<TrainerList addTrainer={addTrainer}/>}/>
           <Route path="/trainers/:id" element={<TrainerPage addBooking={addBooking} trainer={trainer}/>}/>
-          <Route path="/confirm/:id" element={<Confirmation trainer={trainer} booking={booking}/>} />
-          <Route path="/update/:id" element={<Update />} />
-          <Route path="/mybookings" element={<MyBookings />} />
+          <Route path="/confirm/:id" element={<Confirmation trainer={trainer} booking={booking} newBooking={newBooking}/>} />
+          <Route path="/update/:id" element={<Update updateBooking={updateBooking}/>} />
+          <Route path="/mybookings" element={<MyBookings user={user} updateBooking={updateBooking}/>} />
         </Routes>
       </SearchContext.Provider>
     </>

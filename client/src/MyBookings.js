@@ -2,16 +2,9 @@ import { useEffect, useState} from "react";
 import { useNavigate} from "react-router-dom";
 
 
-function MyBookings(){
-    const [bookings, setBookings] = useState([])
+function MyBookings({user, updateBooking}){
+    const [bookings, setBookings] = useState(user)
     const navigate = useNavigate();
-    useEffect(()=> {
-        fetch('/booksesh')
-            .then((r)=> r.json())
-            .then((order)=> setBookings(order));
-    }, [])
-   
-    console.log(bookings)
     
     function editBooking(booking){
         navigate(`/update/${booking.train_active}`, {state: booking})
@@ -33,7 +26,7 @@ function MyBookings(){
               body: JSON.stringify(booking)
             })
         .then((r)=> r.json())  
-        .then((data)=>  console.log(data))
+        .then((data)=>  updateBooking(data))
 
     }
 

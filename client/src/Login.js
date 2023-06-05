@@ -29,7 +29,7 @@ function Login({onLogin}){
                 <p >------------------------------------------------------------------------</p>
                 <p className="whitey">
                     Already have an account? &nbsp;
-                    <button color="secondary" onClick={() => setShowLogin(true)} class="btn-primary">
+                    <button color="secondary" onClick={() => setShowLogin(true)} className="btn-primary">
                         Log In
                     </button>
                 </p>

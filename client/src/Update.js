@@ -5,7 +5,7 @@ import moment from "moment";
 import 'react-calendar/dist/Calendar.css';
 import DayTimePicker from '@mooncake-dev/react-day-time-picker';
 
-function Update(){
+function Update({updateBooking}){
     const [takenTimes, setTakenTimes] = useState([])
     const [calendar, setCalendar] = useState([])
     const navigate = useNavigate();
@@ -21,6 +21,7 @@ function Update(){
     }, [])
     console.log(takenTimes)
     console.log(location.state)
+    console.log(takenTimes)
     
 
     function handleScheduled(dateTime){
@@ -47,14 +48,8 @@ function Update(){
             body: JSON.stringify(full_date)
         })
         .then((r)=> r.json()) 
-        .then((data)=>  nowNavigate(data));
+        .then((data)=>  updateBooking(data));
     }
-
-    function nowNavigate(data){
-        console.log(data)
-        navigate("/mybookings")
-    }
-
 
       function timeSlotValidator(slotTime) {
         const full_date = moment(slotTime).format('MMMM Do YYYY, h:mm a')

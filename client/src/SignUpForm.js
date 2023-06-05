@@ -26,7 +26,7 @@ function SignUpForm({ onLogin }){
         }).then((r) => {
           setIsLoading(false);
           if (r.ok) {
-            r.json().then((user) => onLogin(user));
+            r.json().then((user) => onLogin(user.bookings));
           } else {
             r.json().then((err) => setErrors(err.errors));
           }
@@ -76,7 +76,7 @@ function SignUpForm({ onLogin }){
                 onChange={(e) => setEmail(e.target.value)}
                 />
                 <br></br>
-            <button variant="fill" color="primary" type="submit" class="btn-primary">
+            <button variant="fill" color="primary" type="submit" className="btn-primary">
                 {isLoading ? "Loading..." : "Sign Up"}
             </button>
             <div>

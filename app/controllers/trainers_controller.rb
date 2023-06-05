@@ -16,8 +16,8 @@ class TrainersController < ApplicationController
 
 
     def update
-         trainer = Trainer.find_by(id: params[:id])
-        #  trainer.update(taken_times: [])
+        trainer = Trainer.find_by(id: params[:id])
+        #   trainer.update(taken_times: [])
         trainer.taken_times << params[:_json]
         trainer.save
         render json: trainer.taken_times

@@ -8,21 +8,12 @@ import { SearchContext } from "./App";
 import TrainerActivityCard from "./TrainerActivityCard";
 
 
-function Confirmation({trainer, booking}){
-    const navigate = useNavigate();
+function Confirmation({trainer, booking, newBooking}){
     let { id } = useParams();
     const search = useContext(SearchContext)
     const [takenTimes, setTakenTimes] = useState(trainer.taken_times)
-    const [calendar, setCalendar] = useState([])
     const clicked = true
 
-    // useEffect(()=> {
-    //     fetch(`/timey/${trainer.id}`)
-    //         .then((r)=> r.json())
-    //         .then((times)=> setTakenTimes(times.taken_times));
-    // }, [])
-
-   
      console.log(trainer, booking, takenTimes)
 
      function timeSlotValidator(slotTime) {
@@ -65,7 +56,7 @@ function Confirmation({trainer, booking}){
         body: JSON.stringify(booking)
     })
     .then((r)=> r.json())  
-    .then((data)=>  navigate("/mybookings"));
+    .then((data)=>  newBooking(data));
     
 }
     return (

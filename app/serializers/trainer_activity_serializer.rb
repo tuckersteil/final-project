@@ -3,4 +3,5 @@ class TrainerActivitySerializer < ActiveModel::Serializer
 
   belongs_to :trainer
   belongs_to :activity
+  belongs_to :booking
 end
